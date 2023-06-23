@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/home_screen/home_screen.dart';
+
 class SplashScreen extends StatelessWidget {
   static const routName = "/splashscreen";
 
@@ -7,15 +9,17 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Stack(
-          children: const [
-            Align(alignment: Alignment.center, child: Text("Splash Screen")),
-          ],
-        ),
-      ),
-    );
+    return HomeScreen();
+
+    // Scaffold(
+    //   backgroundColor: Colors.white,
+    //   body: Center(
+    //     child: Stack(
+    //       children: const [
+    //         Align(alignment: Alignment.center, child: Text("Splash Screen")),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
