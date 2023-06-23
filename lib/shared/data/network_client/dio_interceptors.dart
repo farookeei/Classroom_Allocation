@@ -130,7 +130,7 @@ class AwesomeDioInterceptor extends QueuedInterceptor {
       style ?? Styles.LIGHT_GRAY,
     );
     //? for getting in terminal
-    print(coloredMessage);
+    // print(coloredMessage);
     _logger('$coloredMessage');
   }
 
@@ -299,40 +299,4 @@ class AwesomeDioInterceptor extends QueuedInterceptor {
     _logNewLine();
     handler.next(response);
   }
-
-  // Future<void> updateTokens(Map<String, dynamic> responseData) async {
-  //   resetToken();
-  //   await Hive.box('appBox').putAll({
-  //     "token": responseData['accessToken'] as String?,
-  //     "refreshToken": responseData['refreshToken'] as String?
-  //   });
-  //   _token = responseData['accessToken'] as String?;
-  //   _refreshToken = responseData['refreshToken'] as String?;
-  //   final token = Hive.box('appBox').get("token");
-  //   final refresh = Hive.box('appBox').get("refreshToken");
-  //   print("$token, $refresh");
-  // }
-
-  // static String? getToken() {
-  //   if (_token != null) return _token;
-  //   _token = Hive.box('appBox').get("token");
-  //   return _token;
-  // }
-
-  // static Future<String?> getRefreshToken() async {
-  //   if (_refreshToken != null) return _refreshToken;
-  //   _refreshToken = await Hive.box('appBox').get("refreshToken");
-  //   return _refreshToken;
-  // }
-
-  // static Future<String?> getAccessToken() async {
-  //   if (_token != null) return _token;
-  //   _token = await Hive.box('appBox').get("token");
-  //   return _token;
-  // }
-
-  // static resetToken() {
-  //   _token = null;
-  //   _refreshToken = null;
-  // }
 }

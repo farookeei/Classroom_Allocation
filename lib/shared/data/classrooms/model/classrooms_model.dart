@@ -26,6 +26,7 @@ class Classrooms {
   String? layout;
   String? name;
   int? size;
+  String? subject;
 
   Classrooms({this.id, this.layout, this.name, this.size});
 
@@ -34,6 +35,7 @@ class Classrooms {
     layout = json['layout'];
     name = json['name'];
     size = json['size'];
+    subject = json["subject"] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +44,7 @@ class Classrooms {
     data['layout'] = this.layout;
     data['name'] = this.name;
     data['size'] = this.size;
+    data["subject"] = this.subject;
     return data;
   }
 }

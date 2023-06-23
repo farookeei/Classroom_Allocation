@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import '../../../../config/const/constants.dart';
 import '../../network_client/dio_client.dart';
 
-class SubjectsApi {
+class ClassroomsApi {
   DioClient dioClient = DioClient();
-  SubjectsApi();
+  ClassroomsApi();
 
-  Future<Response> getClassroomsList() async {
+  Future<Response> getClassroomsListApi() async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
@@ -19,7 +19,8 @@ class SubjectsApi {
     }
   }
 
-  Future<Response> getindividualClassroomsDetail({required String id}) async {
+  Future<Response> getindividualClassroomsDetailApi(
+      {required String id}) async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(

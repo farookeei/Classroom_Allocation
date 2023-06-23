@@ -50,7 +50,7 @@ class DioClient {
         url,
         queryParameters: queryParameters,
       );
-      log(response.toString());
+      // log(response.toString());
 
       return response;
     } catch (e) {

@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_sample/layout/layout_scaffold.dart';
 
 import '../../themes/color_variables.dart';
-import '../students/students.dart';
+import '../classrooms/screens/classrooms.dart';
+import '../students/screens/students.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
@@ -17,27 +18,33 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       children: [
-        CustomListTile(
+        MainListTiles(
           title: "Students",
           onTap: () {
             Navigator.pushNamed(context, StudentsScreen.routeName);
           },
         ),
-        CustomListTile(
+        MainListTiles(
           title: "Subjects",
+          onTap: () {
+            // Navigator.pushNamed(context, ClassRoomsScreen.routeName);
+          },
         ),
-        CustomListTile(
+        MainListTiles(
           title: "Classrooms",
+          onTap: () {
+            Navigator.pushNamed(context, ClassRoomsScreen.routeName);
+          },
         )
       ],
     ));
   }
 }
 
-class CustomListTile extends StatelessWidget {
+class MainListTiles extends StatelessWidget {
   final String title;
   final Function()? onTap;
-  const CustomListTile({super.key, this.onTap, required this.title});
+  const MainListTiles({super.key, this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {

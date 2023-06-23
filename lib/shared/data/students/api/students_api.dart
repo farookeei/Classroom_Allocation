@@ -7,7 +7,7 @@ class StudentApi {
   DioClient dioClient = DioClient();
   StudentApi();
 
-  Future<Response> getStudentsList() async {
+  Future<Response> getStudentsListApi() async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
@@ -19,7 +19,7 @@ class StudentApi {
     }
   }
 
-  Future<Response> getindividualStudentDetail({required String id}) async {
+  Future<Response> getindividualStudentDetailApi({required String id}) async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(

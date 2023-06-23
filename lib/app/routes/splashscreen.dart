@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/home_screen/home_screen.dart';
+import '../../features/home_screen/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   static const routName = "/splashscreen";
