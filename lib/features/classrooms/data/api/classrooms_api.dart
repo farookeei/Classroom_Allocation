@@ -44,14 +44,10 @@ class ClassroomsApi {
     }
   }
 
-//? registration
-  Future<Response> postStudentRegistration(
-      {required String studentId, required String subjectId}) async {
+  Future<Response> getStudentRegistrationsApi() async {
     try {
-      Map<String, dynamic> body = {"student": studentId, "subject": subjectId};
-      final Response response = await dioClient.post(
+      final Response response = await dioClient.get(
         "/registration/?api_key=$apiKey",
-        data: body,
       );
       return response;
     } catch (e) {
@@ -59,10 +55,14 @@ class ClassroomsApi {
     }
   }
 
-  Future<Response> getStudentRegistrations() async {
+//? registration
+  Future<Response> postStudentRegistrationApi(
+      {required String studentId, required String subjectId}) async {
     try {
-      final Response response = await dioClient.get(
+      Map<String, dynamic> body = {"student": studentId, "subject": subjectId};
+      final Response response = await dioClient.post(
         "/registration/?api_key=$apiKey",
+        data: body,
       );
       return response;
     } catch (e) {

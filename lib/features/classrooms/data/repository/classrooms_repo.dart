@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:test_sample/features/classrooms/data/model/classrooms_model.dart';
 
 import '../../../../shared/data/network_client/dio_exception.dart';
+import '../../../../shared/data/registration/model/registration_model.dart';
 import '../api/classrooms_api.dart';
 
 class ClassroomsRepository {
@@ -44,10 +45,23 @@ class ClassroomsRepository {
     }
   }
 
+  Future<RegistrationsModel> getStudentRegistrationsRepo() async {
+    try {
+      final Response response =
+          await _classroomsApi.getStudentRegistrationsApi();
+
+      RegistrationsModel data = RegistrationsModel.fromJson(response.data);
+
+      return data;
+    } on DioError catch (e) {
+      throw DioExceptions.fromDioError(e);
+    }
+  }
+
   Future<void> postStudentRegistrationRepo(
       {required String studentId, required String subjectId}) async {
     try {
-      final Response response = await _classroomsApi.postStudentRegistration(
+      final Response response = await _classroomsApi.postStudentRegistrationApi(
           studentId: studentId, subjectId: subjectId);
 
       // Classrooms data = Classrooms.fromJson(response.data);

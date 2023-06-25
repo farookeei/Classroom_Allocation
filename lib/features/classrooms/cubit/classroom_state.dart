@@ -7,8 +7,12 @@ class ClassroomState extends Equatable {
   final bool isRegistering;
   final bool isRegisteringSucess;
   final bool isRegisteringError;
+  final bool isRemovingRegist;
+  final bool isRemovingRegistSucess;
+  final bool isRemovingRegistError;
   final String errorMessage;
   final List<Classrooms> classRoomsList;
+  final List<Registrations> registrations;
   final Classrooms? classRoomDetail;
   const ClassroomState(
       {this.isLoading = false,
@@ -18,7 +22,11 @@ class ClassroomState extends Equatable {
       this.isRegistering = false,
       this.isRegisteringSucess = false,
       this.isRegisteringError = false,
+      this.isRemovingRegist = false,
+      this.isRemovingRegistError = false,
+      this.isRemovingRegistSucess = false,
       this.classRoomsList = const [],
+      this.registrations = const [],
       this.isError = false});
 
   @override
@@ -31,7 +39,11 @@ class ClassroomState extends Equatable {
         classRoomDetail,
         isRegistering,
         isRegisteringSucess,
-        isRegisteringError
+        registrations,
+        isRegisteringError,
+        isRemovingRegist,
+        isRemovingRegistSucess,
+        isRemovingRegistError
       ];
 
   ClassroomState copyWith({
@@ -44,6 +56,10 @@ class ClassroomState extends Equatable {
     bool? isRegistering,
     bool? isRegisteringSucess,
     bool? isRegisteringError,
+    bool? isRemovingRegist,
+    bool? isRemovingRegistSucess,
+    bool? isRemovingRegistError,
+    List<Registrations>? registrations,
   }) {
     return ClassroomState(
         isError: isError ?? this.isError,
@@ -54,7 +70,12 @@ class ClassroomState extends Equatable {
         isRegisteringError: isRegisteringError ?? this.isRegisteringError,
         isRegistering: isRegistering ?? this.isRegistering,
         isRegisteringSucess: isRegisteringSucess ?? this.isRegisteringSucess,
-        isSucess: isSucess ?? this.isSucess);
+        isSucess: isSucess ?? this.isSucess,
+        isRemovingRegist: isRemovingRegist ?? this.isRemovingRegist,
+        isRemovingRegistError: isRegisteringError ?? this.isRegisteringError,
+        isRemovingRegistSucess:
+            isRegisteringSucess ?? this.isRemovingRegistSucess,
+        registrations: registrations ?? this.registrations);
   }
 }
 

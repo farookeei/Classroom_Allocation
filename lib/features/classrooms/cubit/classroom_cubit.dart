@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:test_sample/features/classrooms/data/repository/classrooms_repo.dart';
 
+import '../../../shared/data/registration/model/registration_model.dart';
 import '../data/model/classrooms_model.dart';
 
 part 'classroom_state.dart';
@@ -72,7 +73,9 @@ class ClassroomCubit extends Cubit<ClassroomState> {
       await _classRoomsRepository.postStudentRegistrationRepo(
           studentId: studentId, subjectId: subjectId);
       emit(state.copyWith(isRegistering: false, isRegisteringSucess: true));
-      await getClassRoomDetail(id: classId);
+      // await getClassRoomDetail(id: classId);
+      //? for updating the registrations list
+      await getRegistrations();
     } catch (e) {
       emit(state.copyWith(
           isRegisteringError: true,
@@ -87,20 +90,38 @@ class ClassroomCubit extends Cubit<ClassroomState> {
 //!
   Future<void> deleteStudentRegistration({required String regId}) async {
     emit(state.copyWith(
-      isRegistering: true,
-      isRegisteringError: false,
+      isRemovingRegist: true,
+      isRemovingRegistError: false,
     ));
     try {
       await _classRoomsRepository.deleteStudentregistationRepo(regId: regId);
-      emit(state.copyWith(isRegistering: false, isRegisteringSucess: true));
+      emit(state.copyWith(
+          isRemovingRegist: false,
+          isRegisteringSucess: true,
+          isRemovingRegistError: true));
       // await getClassRoomDetail(id: classId);
     } catch (e) {
       emit(state.copyWith(
           isRegisteringError: true,
-          isRegistering: false,
-          errorMessage: e.toString().contains("already enrolled")
-              ? "Student is already enrolled"
-              : e.toString()));
+          isRemovingRegist: false,
+          errorMessage: e.toString()));
+    }
+  }
+
+  ///!
+  Future<void> getRegistrations() async {
+    emit(state.copyWith(
+      isLoading: true,
+      isError: false,
+    ));
+    try {
+      RegistrationsModel data =
+          await _classRoomsRepository.getStudentRegistrationsRepo();
+      emit(state.copyWith(
+          isSucess: true, registrations: data.registrations, isLoading: false));
+    } catch (e) {
+      emit(state.copyWith(
+          isError: true, isLoading: false, errorMessage: e.toString()));
     }
   }
 

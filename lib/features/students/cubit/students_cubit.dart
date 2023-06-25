@@ -34,6 +34,11 @@ class StudentsCubit extends Cubit<StudentsState> {
     }
   }
 
+  List<Students> returnStudentList() {
+    List<Students> studentsList = [...state.studentList];
+    return studentsList;
+  }
+
   List<SelectFieldType> convertToDropdownItems(List<Students>? students) {
     List<SelectFieldType> items = [];
     for (int i = 0; i < students!.length; i++) {

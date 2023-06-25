@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutScaffold(
-        backgroundColor: ReplyColors.neutralLight,
+        // backgroundColor: ReplyColors.neutralLight,
         customAppBar: const CustomAppBar(
             isLeadingEnabled: false,
             //automaticallyImplyLeading: false,

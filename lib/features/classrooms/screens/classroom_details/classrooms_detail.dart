@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_sample/features/classrooms/cubit/classroom_cubit.dart';
 import 'package:test_sample/features/classrooms/data/api/classrooms_api.dart';
+import 'package:test_sample/features/classrooms/screens/classroom_details/widgets/remove_student.dart';
 import 'package:test_sample/features/subjects/cubit/subjects_cubit.dart';
 import 'package:test_sample/layout/layout_scaffold.dart';
 
@@ -26,6 +27,7 @@ class ClassRoomDetail extends StatelessWidget {
     context.read<ClassroomCubit>().getClassRoomDetail(id: id);
     context.read<SubjectsCubit>().getSubjectslist();
     context.read<StudentsCubit>().getStudentlist();
+    context.read<ClassroomCubit>().getRegistrations();
     return LayoutScaffold(
         customAppBar: const CustomAppBar(title: "Classroom Detail"),
         backgroundColor: ReplyColors.neutralLight,
@@ -59,6 +61,14 @@ class ClassRoomDetail extends StatelessWidget {
                         ? null
                         : state.classRoomDetail!.subject,
                   ),
+                  RemoveStudentFromClass(
+                    classId: id,
+                    isSubjectAssignedToClass:
+                        state.classRoomDetail!.subject == "" ? false : true,
+                    subjectId: state.classRoomDetail!.subject == ""
+                        ? null
+                        : state.classRoomDetail!.subject,
+                  )
                 ],
               );
             },
