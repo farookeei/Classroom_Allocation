@@ -5,6 +5,7 @@ import 'package:test_sample/features/subjects/cubit/subjects_cubit.dart';
 import 'package:test_sample/features/subjects/screens/subjectDetail.dart';
 
 import '../../../layout/layout_scaffold.dart';
+import '../../../widgets/appbar/custom_appbar.dart';
 import '../../../widgets/listtile/custom_listtile.dart';
 import '../../../widgets/progress_indicator/custom_progress_indicator.dart';
 
@@ -16,33 +17,38 @@ class SubejctsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutScaffold(
+        customAppBar: const CustomAppBar(
+            // isLeadingEnabled: false,
+            // automaticallyImplyLeading: false,
+            title: "Subjects"),
         child: BlocProvider(
-      create: (context) => SubjectsCubit()..getSubjectslist(),
-      child: BlocBuilder<SubjectsCubit, SubjectsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return const Center(child: CustomProgressIndicator());
-          } else if (state.isError) {
-            return Center(
-              child: Text(state.errorMessage.toString()),
-            );
-          }
-          return ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-              shrinkWrap: true,
-              itemCount: state.subjectsList.length,
-              itemBuilder: (ctx, i) {
-                return CustomListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, SubjectDetail.routeName,
-                        arguments: state.subjectsList[i].id.toString());
-                  },
-                  title: state.subjectsList[i].name!,
-                  subtitle: state.subjectsList[i].teacher.toString(),
+          create: (context) => SubjectsCubit()..getSubjectslist(),
+          child: BlocBuilder<SubjectsCubit, SubjectsState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(child: CustomProgressIndicator());
+              } else if (state.isError) {
+                return Center(
+                  child: Text(state.errorMessage.toString()),
                 );
-              });
-        },
-      ),
-    ));
+              }
+              return ListView.builder(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  shrinkWrap: true,
+                  itemCount: state.subjectsList.length,
+                  itemBuilder: (ctx, i) {
+                    return CustomListTile(
+                      onTap: () {
+                        Navigator.pushNamed(context, SubjectDetail.routeName,
+                            arguments: state.subjectsList[i].id.toString());
+                      },
+                      title: state.subjectsList[i].name!,
+                      subtitle: state.subjectsList[i].teacher.toString(),
+                    );
+                  });
+            },
+          ),
+        ));
   }
 }

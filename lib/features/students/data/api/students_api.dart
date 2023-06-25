@@ -6,10 +6,10 @@ import '../../../../shared/data/network_client/dio_client.dart';
 class StudentApi {
   DioClient dioClient = DioClient();
   StudentApi();
+  String apiKey = Constants.API_KEY;
 
   Future<Response> getStudentsListApi() async {
     try {
-      String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
         "/students/?api_key=$apiKey",
       );
@@ -21,7 +21,6 @@ class StudentApi {
 
   Future<Response> getindividualStudentDetailApi({required String id}) async {
     try {
-      String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
         "/students/$id?api_key=$apiKey",
       );

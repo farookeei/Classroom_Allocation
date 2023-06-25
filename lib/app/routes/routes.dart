@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_sample/app/routes/splashscreen.dart';
 import 'package:test_sample/features/classrooms/cubit/classroom_cubit.dart';
-import 'package:test_sample/features/classrooms/screens/classrooms_detail.dart';
+import 'package:test_sample/features/classrooms/screens/classroom_details/classrooms_detail.dart';
 import 'package:test_sample/features/students/cubit/students_cubit.dart';
 import 'package:test_sample/features/subjects/cubit/subjects_cubit.dart';
 import 'package:test_sample/features/subjects/screens/subjectDetail.dart';
 import 'package:test_sample/features/subjects/screens/subjects.dart';
 
-import '../../features/classrooms/screens/classrooms.dart';
+import '../../features/classrooms/screens/classrooms/classrooms.dart';
 import '../../features/home_screen/home_screen.dart';
 import '../../features/students/screens/student_details.dart';
 import '../../features/students/screens/students.dart';
@@ -51,7 +51,10 @@ class AppRouter {
 
       case ClassRoomsScreen.routeName:
         return MaterialPageRoute(
-            builder: (context) => const ClassRoomsScreen());
+            builder: (context) => BlocProvider.value(
+                  value: _classRoomCubit,
+                  child: const ClassRoomsScreen(),
+                ));
 
       case SubejctsScreen.routeName:
         return MaterialPageRoute(builder: (context) => const SubejctsScreen());

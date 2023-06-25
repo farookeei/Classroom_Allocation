@@ -4,6 +4,9 @@ class ClassroomState extends Equatable {
   final bool isLoading;
   final bool isSucess;
   final bool isError;
+  final bool isRegistering;
+  final bool isRegisteringSucess;
+  final bool isRegisteringError;
   final String errorMessage;
   final List<Classrooms> classRoomsList;
   final Classrooms? classRoomDetail;
@@ -12,6 +15,9 @@ class ClassroomState extends Equatable {
       this.errorMessage = '',
       this.isSucess = false,
       this.classRoomDetail,
+      this.isRegistering = false,
+      this.isRegisteringSucess = false,
+      this.isRegisteringError = false,
       this.classRoomsList = const [],
       this.isError = false});
 
@@ -22,7 +28,10 @@ class ClassroomState extends Equatable {
         isSucess,
         errorMessage,
         classRoomsList,
-        classRoomDetail
+        classRoomDetail,
+        isRegistering,
+        isRegisteringSucess,
+        isRegisteringError
       ];
 
   ClassroomState copyWith({
@@ -32,6 +41,9 @@ class ClassroomState extends Equatable {
     String? errorMessage,
     Classrooms? classRoomDetail,
     List<Classrooms>? classRoomsList,
+    bool? isRegistering,
+    bool? isRegisteringSucess,
+    bool? isRegisteringError,
   }) {
     return ClassroomState(
         isError: isError ?? this.isError,
@@ -39,6 +51,9 @@ class ClassroomState extends Equatable {
         errorMessage: errorMessage ?? this.errorMessage,
         classRoomsList: classRoomsList ?? this.classRoomsList,
         classRoomDetail: classRoomDetail ?? this.classRoomDetail,
+        isRegisteringError: isRegisteringError ?? this.isRegisteringError,
+        isRegistering: isRegistering ?? this.isRegistering,
+        isRegisteringSucess: isRegisteringSucess ?? this.isRegisteringSucess,
         isSucess: isSucess ?? this.isSucess);
   }
 }

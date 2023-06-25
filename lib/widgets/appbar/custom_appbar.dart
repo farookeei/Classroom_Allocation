@@ -56,7 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               icon: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                color: ReplyColors.blueExtraBold,
+                color: ReplyColors.white,
                 size: 22.sp,
               ),
             )
@@ -70,8 +70,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Flexible(
                   child: Text(
                     title!,
-                    style:
-                        titleStyle ?? Theme.of(context).textTheme.titleMedium!,
+                    style: titleStyle ??
+                        Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: ReplyColors.white),
                     overflow: TextOverflow.fade,
                     maxLines: 1,
                   ),

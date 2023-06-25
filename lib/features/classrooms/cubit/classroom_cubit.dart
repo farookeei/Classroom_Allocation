@@ -60,5 +60,49 @@ class ClassroomCubit extends Cubit<ClassroomState> {
     }
   }
 
-  // addSubjectToClassRepo
+  Future<void> postStudentRegistration(
+      {required String studentId,
+      required String subjectId,
+      required String classId}) async {
+    emit(state.copyWith(
+      isRegistering: true,
+      isRegisteringError: false,
+    ));
+    try {
+      await _classRoomsRepository.postStudentRegistrationRepo(
+          studentId: studentId, subjectId: subjectId);
+      emit(state.copyWith(isRegistering: false, isRegisteringSucess: true));
+      await getClassRoomDetail(id: classId);
+    } catch (e) {
+      emit(state.copyWith(
+          isRegisteringError: true,
+          isRegistering: false,
+          errorMessage: e.toString().contains("already enrolled")
+              ? "Student is already enrolled"
+              : e.toString()));
+    }
+  }
+
+//TODOD
+//!
+  Future<void> deleteStudentRegistration({required String regId}) async {
+    emit(state.copyWith(
+      isRegistering: true,
+      isRegisteringError: false,
+    ));
+    try {
+      await _classRoomsRepository.deleteStudentregistationRepo(regId: regId);
+      emit(state.copyWith(isRegistering: false, isRegisteringSucess: true));
+      // await getClassRoomDetail(id: classId);
+    } catch (e) {
+      emit(state.copyWith(
+          isRegisteringError: true,
+          isRegistering: false,
+          errorMessage: e.toString().contains("already enrolled")
+              ? "Student is already enrolled"
+              : e.toString()));
+    }
+  }
+
+  //
 }

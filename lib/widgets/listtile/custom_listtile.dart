@@ -14,6 +14,7 @@ class CustomListTile extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
       decoration: BoxDecoration(
+        color: ReplyColors.white,
         borderRadius: BorderRadius.circular(5.r),
         border: Border.all(width: 1, color: ReplyColors.neutral75),
       ),

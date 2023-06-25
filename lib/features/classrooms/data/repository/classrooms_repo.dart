@@ -43,4 +43,27 @@ class ClassroomsRepository {
       throw DioExceptions.fromDioError(e);
     }
   }
+
+  Future<void> postStudentRegistrationRepo(
+      {required String studentId, required String subjectId}) async {
+    try {
+      final Response response = await _classroomsApi.postStudentRegistration(
+          studentId: studentId, subjectId: subjectId);
+
+      // Classrooms data = Classrooms.fromJson(response.data);
+      // return data;
+    } on DioError catch (e) {
+      throw DioExceptions.fromDioError(e);
+    }
+  }
+
+  Future<void> deleteStudentregistationRepo({required String regId}) async {
+    try {
+      final Response response =
+          await _classroomsApi.deleteStudentRegistationApi(regId: regId);
+    } on DioError catch (e) {
+      throw DioExceptions.fromDioError(e);
+    }
+  }
 }
+// 

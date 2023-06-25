@@ -6,12 +6,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_sample/features/classrooms/cubit/classroom_cubit.dart';
+import 'package:test_sample/features/subjects/cubit/subjects_cubit.dart';
+import 'package:test_sample/themes/color_variables.dart';
 
-import '../../../widgets/buttons/button.dart';
-import '../../../widgets/custom_dropdown.dart';
-import '../../../widgets/progress_indicator/custom_progress_indicator.dart';
-import '../../subjects/cubit/subjects_cubit.dart';
-import 'detail_tile.dart';
+import '../../../../../widgets/buttons/button.dart';
+import '../../../../../widgets/custom_dropdown.dart';
+import '../../../../../widgets/progress_indicator/custom_progress_indicator.dart';
+import '../../../../../widgets/snackbar/custom_snackbar.dart';
+import '../../../../../widgets/listtile_builder.dart.dart';
 
 class AddSubjectToClass extends StatelessWidget {
   final String subjectId;
@@ -21,7 +23,7 @@ class AddSubjectToClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<String> _selectedSubject = ValueNotifier<String>("");
+    ValueNotifier<String> selectedSubject = ValueNotifier<String>("");
 
     return BlocListener<ClassroomCubit, ClassroomState>(
       listener: (context, state) {},
@@ -44,22 +46,33 @@ class AddSubjectToClass extends StatelessWidget {
                   .name!;
           return Column(
             children: [
-              DetailTile(
-                title: "Subject:",
-                value: currentsubjectName,
+              SettingsListTileBuilder(
+                items: [
+                  SettingsTileModel(
+                      title: "Current Subject", trailing: currentsubjectName)
+                ],
+              ),
+              // DetailTile(
+              //   title: "Subject:",
+              //   value: currentsubjectName,
+              // ),
+
+              SizedBox(
+                height: 20.h,
               ),
               ValueListenableBuilder(
-                  valueListenable: _selectedSubject,
+                  valueListenable: selectedSubject,
                   builder: (ctx, vale, child) {
                     return CustomSelectField(
+                      fillColor: ReplyColors.white,
                       listOptions: state.dropDownItems,
                       variant: Variant.filled,
                       handleChange: (e) {
                         log(e);
-                        _selectedSubject.value = e.toString();
+                        selectedSubject.value = e.toString();
                       },
-                      label: "Assign a subject to class",
-                      hintText: "",
+                      label: "",
+                      hintText: "Assign a subject to class",
                     );
                   }),
               SizedBox(height: 12.h),
@@ -68,10 +81,17 @@ class AddSubjectToClass extends StatelessWidget {
                       ? ButtonState.enabled
                       : ButtonState.enabled,
                   onTap: () {
-                    context.read<ClassroomCubit>().addSubjectToClass(
-                        classId: classId, subjectId: _selectedSubject.value);
+                    if (selectedSubject.value == "") {
+                      customSnackBar(
+                          context: context,
+                          title: "Select a subject to proceed",
+                          snackBarType: SnackBarType.error);
+                    } else {
+                      context.read<ClassroomCubit>().addSubjectToClass(
+                          classId: classId, subjectId: selectedSubject.value);
+                    }
                   },
-                  child: const Text("Submit"))
+                  child: const Text("Update Subject"))
             ],
           );
         },

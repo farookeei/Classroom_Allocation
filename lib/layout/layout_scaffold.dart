@@ -52,6 +52,7 @@ class _LayoutScaffoldState extends State<LayoutScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: widget.customAppBar,
       extendBodyBehindAppBar: widget.extendBodyBehindAppBar,
       bottomNavigationBar: widget.bottomNavigationBar,
       extendBody: true,
