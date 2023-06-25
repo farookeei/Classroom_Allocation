@@ -23,6 +23,8 @@ dependencies:
   pretty_dio_logger: ^1.2.0-beta-1
   flutter_svg: ^1.0.3
   flutter_dotenv: ^5.0.2
+  flash: ^2.0.3+2
+
 
 
 

@@ -16,6 +16,8 @@ class DioClient {
           ..options.baseUrl = baseUrl
           ..options.connectTimeout = 60 * 1000
           ..options.receiveTimeout = 60 * 1000
+          ..options.contentType = Headers
+              .formUrlEncodedContentType //?since apis are in cURL command
           ..interceptors.add(
             AwesomeDioInterceptor(baseUrl: baseUrl),
           ) // create a new Dio instance

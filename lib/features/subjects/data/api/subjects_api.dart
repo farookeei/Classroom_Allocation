@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
 
 import '../../../../config/const/constants.dart';
-import '../../network_client/dio_client.dart';
+import '../../../../shared/data/network_client/dio_client.dart';
 
-class ClassroomsApi {
+class SubjectsApi {
   DioClient dioClient = DioClient();
-  ClassroomsApi();
+  SubjectsApi();
 
-  Future<Response> getClassroomsListApi() async {
+  Future<Response> getSubjectsList() async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
-        "/classrooms/?api_key=$apiKey",
+        "/subjects/?api_key=$apiKey",
       );
       return response;
     } catch (e) {
@@ -19,12 +19,11 @@ class ClassroomsApi {
     }
   }
 
-  Future<Response> getindividualClassroomsDetailApi(
-      {required String id}) async {
+  Future<Response> getindividualubjectsDetail({required String id}) async {
     try {
       String apiKey = Constants.API_KEY;
       final Response response = await dioClient.get(
-        "/classrooms/$id?api_key=$apiKey",
+        "/subjects/$id?api_key=$apiKey",
       );
       return response;
     } catch (e) {

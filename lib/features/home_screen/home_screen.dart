@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_sample/features/subjects/screens/subjects.dart';
 import 'package:test_sample/layout/layout_scaffold.dart';
 
 import '../../themes/color_variables.dart';
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         MainListTiles(
           title: "Subjects",
           onTap: () {
-            // Navigator.pushNamed(context, ClassRoomsScreen.routeName);
+            Navigator.pushNamed(context, SubejctsScreen.routeName);
           },
         ),
         MainListTiles(

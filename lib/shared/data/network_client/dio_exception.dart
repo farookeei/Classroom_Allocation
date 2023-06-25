@@ -18,11 +18,7 @@ class DioExceptions implements Exception {
         message = "Receive timeout in connection with API server";
         break;
       case DioErrorType.response:
-        message = _handleError(
-          statusCode: dioError.response?.statusCode,
-          error: dioError.response?.data,
-          isAuthentication: isAuthentication,
-        );
+        message = Constants.somethingWentWrong;
         break;
       case DioErrorType.sendTimeout:
         message = "Send timeout in connection with API server";
@@ -41,40 +37,33 @@ class DioExceptions implements Exception {
     }
   }
 
-//?isAuthentication refers to login and signup.
-  String _handleError(
-      {int? statusCode, dynamic error, bool isAuthentication = false}) {
-    if (isAuthentication) {
-      if (error['errors'][0]['type'] != "") {
-        return error['errors'][0]['type'];
-      } else if (error['msg'] != "") {
-        return error['msg'];
-      } else {
-        return Constants.somethingWentWrong;
-      }
-    } else if (error['msg'] != "" && error['msg'] != null) {
-      return error['msg'];
-    } else {
-      return Constants.somethingWentWrong;
-    }
+  // String _handleError({
+  //   int? statusCode,
+  //   dynamic error,
+  // }) {
+  //   if (error['msg'] != "" && error['msg'] != null) {
+  //     return error['msg'];
+  //   } else {
+  //     return Constants.somethingWentWrong;
+  //   }
 
-    // switch (error) {
-    //   case 400:
-    //     return 'Bad request';
-    //   case 401:
-    //     return 'Unauthorized';
-    //   case 403:
-    //     return 'Forbidden';
-    //   case 404:
-    //     return error['message'];
-    //   case 500:
-    //     return 'Internal server error';
-    //   case 502:
-    //     return 'Bad gateway';
-    //   default:
-    //     return 'Oops something went wrong';
-    // }
-  }
+  // switch (error) {
+  //   case 400:
+  //     return 'Bad request';
+  //   case 401:
+  //     return 'Unauthorized';
+  //   case 403:
+  //     return 'Forbidden';
+  //   case 404:
+  //     return error['message'];
+  //   case 500:
+  //     return 'Internal server error';
+  //   case 502:
+  //     return 'Bad gateway';
+  //   default:
+  //     return 'Oops something went wrong';
+  // }
+  // }
 
   @override
   String toString() => message;
