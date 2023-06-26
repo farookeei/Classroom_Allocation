@@ -24,10 +24,15 @@ class ClassRoomDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ClassroomCubit>().getClassRoomDetail(id: id);
-    context.read<SubjectsCubit>().getSubjectslist();
-    context.read<StudentsCubit>().getStudentlist();
-    context.read<ClassroomCubit>().getRegistrations();
+    Future<void> get() async {
+      await context.read<ClassroomCubit>().getClassRoomDetail(id: id);
+      await context.read<ClassroomCubit>().getRegistrations();
+      await context.read<SubjectsCubit>().getSubjectslist();
+      await context.read<StudentsCubit>().getStudentlist();
+    }
+
+    get();
+
     return LayoutScaffold(
         customAppBar: const CustomAppBar(title: "Classroom Detail"),
         backgroundColor: ReplyColors.neutralLight,
@@ -42,6 +47,7 @@ class ClassRoomDetail extends StatelessWidget {
                   child: Text(state.errorMessage.toString()),
                 );
               }
+              // context.read<ClassroomCubit>().addCurrentClassSubject(state.)
               return Column(
                 children: [
                   ClassDetailsWidget(

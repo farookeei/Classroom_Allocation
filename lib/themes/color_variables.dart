@@ -59,19 +59,4 @@ class ReplyColors {
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color neutralBold = Color(0xff212121);
   //other colors
-
-  //other colors
-
-  /**
- * Returns color generated from hex value with #or without #.
- */
-  static fromHex(String hex) {
-    if (hex.length > 6) {
-      hex = hex.substring(1, 7);
-    }
-
-    hex = "0xFF" + hex;
-
-    return Color(int.parse(hex));
-  }
 }

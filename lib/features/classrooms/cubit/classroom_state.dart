@@ -14,11 +14,14 @@ class ClassroomState extends Equatable {
   final List<Classrooms> classRoomsList;
   final List<Registrations> registrations;
   final Classrooms? classRoomDetail;
+  final List<SelectFieldType> registrationsSelections;
+  final String currentClassSub;
   const ClassroomState(
       {this.isLoading = false,
       this.errorMessage = '',
       this.isSucess = false,
       this.classRoomDetail,
+      this.currentClassSub = '',
       this.isRegistering = false,
       this.isRegisteringSucess = false,
       this.isRegisteringError = false,
@@ -27,6 +30,7 @@ class ClassroomState extends Equatable {
       this.isRemovingRegistSucess = false,
       this.classRoomsList = const [],
       this.registrations = const [],
+      this.registrationsSelections = const [],
       this.isError = false});
 
   @override
@@ -43,27 +47,31 @@ class ClassroomState extends Equatable {
         isRegisteringError,
         isRemovingRegist,
         isRemovingRegistSucess,
-        isRemovingRegistError
+        isRemovingRegistError,
+        registrationsSelections,
+        currentClassSub
       ];
 
-  ClassroomState copyWith({
-    bool? isLoading,
-    bool? isSucess,
-    bool? isError,
-    String? errorMessage,
-    Classrooms? classRoomDetail,
-    List<Classrooms>? classRoomsList,
-    bool? isRegistering,
-    bool? isRegisteringSucess,
-    bool? isRegisteringError,
-    bool? isRemovingRegist,
-    bool? isRemovingRegistSucess,
-    bool? isRemovingRegistError,
-    List<Registrations>? registrations,
-  }) {
+  ClassroomState copyWith(
+      {bool? isLoading,
+      bool? isSucess,
+      bool? isError,
+      String? errorMessage,
+      Classrooms? classRoomDetail,
+      List<Classrooms>? classRoomsList,
+      bool? isRegistering,
+      bool? isRegisteringSucess,
+      bool? isRegisteringError,
+      bool? isRemovingRegist,
+      bool? isRemovingRegistSucess,
+      bool? isRemovingRegistError,
+      List<Registrations>? registrations,
+      String? currentClassSub,
+      List<SelectFieldType>? registrationsSelections}) {
     return ClassroomState(
         isError: isError ?? this.isError,
         isLoading: isLoading ?? this.isLoading,
+        currentClassSub: currentClassSub ?? this.currentClassSub,
         errorMessage: errorMessage ?? this.errorMessage,
         classRoomsList: classRoomsList ?? this.classRoomsList,
         classRoomDetail: classRoomDetail ?? this.classRoomDetail,
@@ -75,7 +83,9 @@ class ClassroomState extends Equatable {
         isRemovingRegistError: isRegisteringError ?? this.isRegisteringError,
         isRemovingRegistSucess:
             isRegisteringSucess ?? this.isRemovingRegistSucess,
-        registrations: registrations ?? this.registrations);
+        registrations: registrations ?? this.registrations,
+        registrationsSelections:
+            registrationsSelections ?? this.registrationsSelections);
   }
 }
 

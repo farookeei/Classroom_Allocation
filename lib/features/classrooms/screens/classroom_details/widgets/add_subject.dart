@@ -30,7 +30,7 @@ class AddSubjectToClass extends StatelessWidget {
       child: BlocBuilder<SubjectsCubit, SubjectsState>(
         builder: (context, state) {
           if (state.isLoading) {
-            return const Center(child: CustomProgressIndicator());
+            //  return const Center(child: CustomProgressIndicator());
           } else if (state.isError) {
             return Center(
               child: Text(state.errorMessage.toString()),
