@@ -19,7 +19,7 @@ class StudentDetail extends StatelessWidget {
     context.read<StudentsCubit>().getStudentDetail(id: id);
     return LayoutScaffold(
         backgroundColor: ReplyColors.neutralLight,
-        customAppBar: CustomAppBar(title: "Students Details"),
+        customAppBar: const CustomAppBar(title: "Students Details"),
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: BlocBuilder<StudentsCubit, StudentsState>(
