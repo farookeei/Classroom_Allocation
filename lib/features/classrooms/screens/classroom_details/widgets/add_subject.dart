@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_sample/features/classrooms/cubit/classroom_cubit.dart';
 import 'package:test_sample/features/subjects/cubit/subjects_cubit.dart';
+import 'package:test_sample/features/subjects/data/model/subjects_model.dart';
 import 'package:test_sample/themes/color_variables.dart';
 
 import '../../../../../widgets/buttons/button.dart';
@@ -38,12 +39,16 @@ class AddSubjectToClass extends StatelessWidget {
           }
           String currentsubjectName = subjectId == ""
               ? "No Subject added"
-              :
-              // ignore: unrelated_type_equality_checks
-              state.subjectsList
-                  .where((e) => e.id.toString() == subjectId)
-                  .first
-                  .name!;
+              : state.subjectsList.isEmpty
+                  ? ""
+                  :
+                  // ignore: unrelated_type_equality_checks
+                  state.subjectsList.firstWhere(
+                      (e) => e.id.toString() == subjectId,
+                      orElse: () {
+                        return Subjects();
+                      },
+                    ).name!;
           return Column(
             children: [
               SettingsListTileBuilder(
