@@ -111,9 +111,6 @@ class AwesomeDioInterceptor extends QueuedInterceptor {
   static const Styles _defaultResponseStyle = Styles.GREEN;
   static const Styles _defaultErrorStyle = Styles.RED;
 
-  static String? _token;
-  static String? _refreshToken;
-
   final String _baseUrl;
   late final JsonEncoder _jsonEncoder;
   late final bool _logRequestHeaders;
@@ -283,8 +280,6 @@ class AwesomeDioInterceptor extends QueuedInterceptor {
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    //! options.headers["Authorization"] = getToken();
-
     //console log texts
     _logRequest(options, style: _requestStyle);
     _logNewLine();
